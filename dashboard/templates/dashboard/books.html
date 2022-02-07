@@ -1,0 +1,52 @@
+{% extends 'dashboard/base.html' %} 
+{% load static %} 
+{% block content %}
+
+<section class='text-center container'>
+    <h2>Search books and browse your favorite</h2>
+    <p>just enter the search query to obtain the results</p><b></b>
+    <form action="" method="post">
+        {%csrf_token%}
+        {{form}}
+        <input class="btn btn-danger" type="submit" value="Submit">
+    </form><br>
+{%for bk in results%}
+    <a href="{{bk.preview}}" target="_blank">
+        <div class="card">
+            <div class="card-header">
+                <div class="row">
+                    <div class="col-md-3">
+                        <img class="img-fluid" src="{{bk.thumbnail}}" alt="">
+
+                    </div>
+                    <div class="col-md-9">
+                        <h3 class="p-0 m-0">{{bk.title}}</h3>
+                        <b>
+                            <u>
+                                <h5 class="p-0 m-0">{{bk.sub}}</h5>
+                            </u>
+                        </b>
+                        <h6 class="p-0 m-1">{{bk.desc}}</h6>
+                        {%if bk.categories%}
+                        <b> 
+                           
+                            <h6 class="ml-0 mt-3">Category: {{bk.categories}}</h6>
+                            {%endif%}
+                            {%if bk.count%}
+                            <h6 class="ml-0 mt-1">Pages: {{bk.count}}</h6>
+                            {%endif%}
+                            {%if bk.rating%}
+                            <h6 class="ml-0 mt-1">Rating: {{bk.rating}}</h6>
+                          
+                        </b>
+                        {%endif%}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </a>
+    {%endfor%}
+    <br>
+</section>
+
+{% endblock content %}
