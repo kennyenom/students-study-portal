@@ -22,7 +22,7 @@ def note(request):
             return redirect('notes')
     else:
         form = CreateNoteForm()
-    note = Notes.objects.filter(user=request.user)
+    note = Notes.objects.all()
     return render(request,'dashboard/notes.html',{'note':note,'form':form})
 
 class CreateNote(CreateView):
