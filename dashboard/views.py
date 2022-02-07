@@ -11,7 +11,7 @@ from django.contrib.auth.decorators import login_required
 
 def index(request):
     return render(request,'dashboard/home.html')
-@login_required
+
 def note(request):
     if request.method == 'POST':
         form = CreateNoteForm(request.POST)
@@ -93,7 +93,7 @@ def updateHomework(request,pk):
     homework.save()
     return redirect('homework')
 
-@login_required
+
 def youtube(request):
     if request.method == 'POST':
         form = YoutubeForm(request.POST)
@@ -128,7 +128,7 @@ def youtube(request):
         'form':form
     }
     return render(request,'dashboard/youtube.html',context)
-@login_required
+
 def todo(request):
     if request.method == 'POST':
         todo = TodoForm(request.POST)
@@ -157,7 +157,7 @@ class TodoDelete(DeleteView):
     model = Todo
     template_name = 'dashboard/confirm_delete3.html'
     success_url = reverse_lazy('todo')
-@login_required
+
 def book(request):
     if request.method == 'POST':
         form = YoutubeForm(request.POST)
@@ -193,7 +193,7 @@ def book(request):
 
     }
     return render(request,'dashboard/books.html',context)
-@login_required
+
 def dictionary(request):
     if request.method == 'POST':
         form = YoutubeForm(request.POST)
@@ -234,11 +234,11 @@ def dictionary(request):
 
 
 
-@login_required
+
 def dic(request):
     form = YoutubeForm()
     return render(request,'dashboard/dictionary.html',{'form':form})
-@login_required
+
 def Wikipedia(request):
     if request.method == 'POST':
         text = request.POST['text']
